@@ -11,6 +11,6 @@
     <title>Редактор</title>
 </head>
 <body>
-
+    Редактор
 </body>
 </html>

@@ -11,6 +11,6 @@
     <title>Комплектующие</title>
 </head>
 <body>
-
+ Запчасти
 </body>
 </html>
