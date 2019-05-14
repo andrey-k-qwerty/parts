@@ -4,6 +4,24 @@ public class Part {
     private int id;
     private String title;
     private boolean need;
+    private  int count;
+
+    public int getCount() {
+        return count;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
+    }
+
+    public Part(int id, String title, boolean need) {
+        this.id = id;
+        this.title = title;
+        this.need = need;
+    }
+
+    public Part() {
+    }
 
     public int getId() {
         return id;
@@ -27,5 +45,14 @@ public class Part {
 
     public void setNeed(boolean need) {
         this.need = need;
+    }
+
+    @Override
+    public String toString() {
+        return "Part{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", need=" + need +
+                '}';
     }
 }
