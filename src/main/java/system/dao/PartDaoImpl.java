@@ -9,33 +9,34 @@ import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class PartDaoImpl implements PartDao {
-    private static final AtomicInteger AUTO_ID = new AtomicInteger(0);
+
+    private static final AtomicInteger AUTO_ID = new AtomicInteger(1);
     private static List<Part> parts = new ArrayList<>();
-   /* материнская плата да 3
-    звуковая карта нет 2
-    процессор да 2
-    подсветка корпуса нет 0
-    HDD диск нет 1
-    корпус да 10
-    память да 10
-    SSD диск да 15
-    видеокарта нет*/
+
+    public static int getAutoId() {
+        return AUTO_ID.get();
+    }
+
+    public static int nextID() {
+        return AUTO_ID.getAndIncrement();
+    }
 
     static {
-          parts.add( new Part(AUTO_ID.getAndIncrement(), "материнская плата", true));
-          parts.add( new Part(AUTO_ID.getAndIncrement(), "звуковая карта", false));
-          parts.add( new Part(AUTO_ID.getAndIncrement(), "процессор", true));
-          parts.add( new Part(AUTO_ID.getAndIncrement(), "подсветка корпуса", false));
-          parts.add( new Part(AUTO_ID.getAndIncrement(), "HDD диск", false));
-          parts.add( new Part(AUTO_ID.getAndIncrement(), "корпус", true));
-          parts.add( new Part(AUTO_ID.getAndIncrement(), "память", true));
-          parts.add( new Part(AUTO_ID.getAndIncrement(), "SSD диск", true));
-          parts.add( new Part(AUTO_ID.getAndIncrement(), "видеокарта", false));
+        parts.add(new Part(AUTO_ID.getAndIncrement(), "материнская плата", true));
+        parts.add(new Part(AUTO_ID.getAndIncrement(), "звуковая карта", false));
+        parts.add(new Part(AUTO_ID.getAndIncrement(), "процессор", true));
+        parts.add(new Part(AUTO_ID.getAndIncrement(), "подсветка корпуса", false));
+        parts.add(new Part(AUTO_ID.getAndIncrement(), "HDD диск", false));
+        parts.add(new Part(AUTO_ID.getAndIncrement(), "корпус", true));
+        parts.add(new Part(AUTO_ID.getAndIncrement(), "память", true));
+        parts.add(new Part(AUTO_ID.getAndIncrement(), "SSD диск", true));
+        parts.add(new Part(AUTO_ID.getAndIncrement(), "видеокарта", false));
 
-          parts.forEach(part -> part.setCount((int)(Math.random() * 10)));
+        parts.forEach(part -> part.setCount((int) (Math.random() * 10)));
 
 
     }
+
     @Override
     public List<Part> allParts() {
         return parts;
@@ -53,24 +54,24 @@ public class PartDaoImpl implements PartDao {
         parts.remove(part);
     }
 
-    public void deleteById(int id ) {
+    public void deleteById(int id) {
         parts.removeIf(part -> part.getId() == id);
     }
 
     @Override
     public void update(Part part) {
-       parts.stream().filter(p -> p.getId() == part.getId())
-               .forEach(p -> {
-                   p.setTitle(part.getTitle());
-                   p.setNeed(part.isNeed());
-                   p.setCount(part.getCount());
-               } );
+        parts.stream().filter(p -> p.getId() == part.getId())
+                .forEach(p -> {
+                    p.setTitle(part.getTitle());
+                    p.setNeed(part.isNeed());
+                    p.setCount(part.getCount());
+                });
 
 
     }
 
     @Override
     public Part getPartById(int id) {
-        return   parts.stream().filter(p -> p.getId() == id).findFirst().orElse(null);
+        return parts.stream().filter(p -> p.getId() == id).findFirst().orElse(null);
     }
 }

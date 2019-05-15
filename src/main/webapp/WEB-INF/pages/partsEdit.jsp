@@ -13,12 +13,22 @@
     <title>Редактор</title>
 </head>
 <body>
- <spring:form modelAttribute="part" method="post" action="/edit">
-     <spring:hidden path="id" />
-     <spring:input path="title"/>
-     <spring:input path="need"/>
-     <spring:input path="count"/>
-     <spring:button>OK</spring:button>
- </spring:form>
+<c:if test="${empty part.title}">
+    <c:url value="/add" var="var"/>
+</c:if>
+<c:if test="${!empty part.title}">
+    <c:url value="/edit" var="var"/>
+</c:if>
+
+<spring:form modelAttribute="part" method="post" action="${var}">
+    <spring:hidden path="id"/> <br>
+
+    <spring:input path="title"/><br>
+
+    <spring:input path="need"/><br>
+
+    <spring:input path="count"/><br>
+    <spring:button>OK</spring:button>
+</spring:form>
 </body>
 </html>
