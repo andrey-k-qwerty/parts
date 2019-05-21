@@ -1,5 +1,6 @@
 package system.dao;
 
+import org.springframework.stereotype.Repository;
 import system.model.Part;
 
 import java.util.ArrayList;
@@ -7,7 +8,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
-
+@Repository
 public class PartDaoImpl implements PartDao {
 
     private static final AtomicInteger AUTO_ID = new AtomicInteger(1);

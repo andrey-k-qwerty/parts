@@ -1,9 +1,10 @@
 package system.config;
 
+
 import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
-import javax.servlet.Filter;
+import javax.servlet.*;
 
 public class Dispatcher extends AbstractAnnotationConfigDispatcherServletInitializer {
     @Override
@@ -28,4 +29,6 @@ public class Dispatcher extends AbstractAnnotationConfigDispatcherServletInitial
         characterEncodingFilter.setForceEncoding(true);
         return new Filter[] {characterEncodingFilter};
     }
+
+
 }

@@ -1,6 +1,7 @@
 package system.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import system.dao.PartDao;
 import system.dao.PartDaoImpl;
 import system.model.Part;
@@ -8,7 +9,7 @@ import system.model.Part;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
-
+@Service
 public class PartServiceImpl implements PartService {
 
     private PartDao partDao = new PartDaoImpl();

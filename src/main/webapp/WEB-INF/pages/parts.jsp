@@ -8,6 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags/form" %>
+
 <html>
 <head>
     <title>Комплектующие</title>
@@ -45,5 +46,7 @@
 <spring:form method="GET" action="/add">
       <input type = "submit" value = "Добавить"/>
 </spring:form>
+
+
 </body>
 </html>

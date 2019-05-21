@@ -8,6 +8,9 @@ import system.model.Part;
 import system.service.PartService;
 import system.service.PartServiceImpl;
 
+import javax.servlet.http.HttpServletRequest;
+import java.util.List;
+
 @Controller
 public class PartsController {
  //   private final Logger logger = LoggerFactory.getLogger(PartsController.class);
@@ -38,7 +41,7 @@ public class PartsController {
     public ModelAndView partsEdit(@ModelAttribute("part")Part part) {
         ModelAndView modelAndView = new ModelAndView();
         partService.update(part);
-        modelAndView.setViewName("redirect:/");
+        modelAndView.setViewName("redirect:/test");
         return modelAndView;
 
     }
@@ -64,6 +67,18 @@ public class PartsController {
         modelAndView.setViewName("redirect:/");
         Part part = partService.getPartById(id);
         partService.delete(part);
+        return modelAndView;
+    }
+    @RequestMapping(value="/getpart")
+    public @ResponseBody
+    List<Part> getTodos(@ModelAttribute("part")Part part) {
+        return partService.allParts();
+    }
+    @RequestMapping(value = "/test")
+    public ModelAndView allPartsTest() {
+        ModelAndView modelAndView = new ModelAndView();
+     //   modelAndView.addObject("parts",partService.allParts());
+        modelAndView.setViewName("index");
         return modelAndView;
     }
 
