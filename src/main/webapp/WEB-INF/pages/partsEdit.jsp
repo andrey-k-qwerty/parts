@@ -11,6 +11,8 @@
 <html>
 <head>
     <title>Редактор</title>
+    <link rel="stylesheet" type="text/css"
+          href="/assets/Bootstrap-4-4.1.1/css/bootstrap.min.css"/>
 </head>
 <body>
 <c:if test="${empty part.title}">
