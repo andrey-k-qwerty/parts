@@ -15,4 +15,6 @@ public interface PartService {
 
     Part getPartById(int id);
 
+    int getCountNeed();
+
 }

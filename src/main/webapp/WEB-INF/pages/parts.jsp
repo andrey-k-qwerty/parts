@@ -12,6 +12,8 @@
 <html>
 <head>
     <title>Комплектующие</title>
+    <link rel="stylesheet" type="text/css"
+          href="/assets/Bootstrap-4-4.1.1/css/bootstrap.min.css"/>
 </head>
 <body>
 <table>
@@ -36,7 +38,7 @@
     <tfoot>
     <tr>
         <th>Можно собрать</th>
-        <th>0</th>
+        <th>${count}</th>
         <th>компьютеров</th>
     </tr>
     </tfoot>

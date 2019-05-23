@@ -1,10 +1,32 @@
 package system.model;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "part")
 public class Part {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private int id;
+    @Column(name = "title")
     private String title;
+    @Column(name = "need")
     private boolean need;
-    private  int count;
+    @Column(name = "count")
+    private int count;
+    @Column(name = "description")
+    private String description;
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
 
     public int getCount() {
         return count;

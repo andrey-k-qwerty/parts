@@ -5,17 +5,19 @@
   Time: 12:37
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <html>
 <head>
-    <title>$Title$</title>
+    <title>Комплектующие</title>
     <link rel="stylesheet" type="text/css"
-          href="https://cdn.datatables.net/v/bs4-4.1.1/jq-3.3.1/dt-1.10.18/datatables.min.css"/>
+          href="/assets/datatables.min.css"/>
+
 
     <script type="text/javascript"
-            src="https://cdn.datatables.net/v/bs4-4.1.1/jq-3.3.1/dt-1.10.18/datatables.min.js"></script>
+            src="/assets/datatables.min.js"></script>
+
 </head>
 <body>
 <script>
@@ -29,7 +31,14 @@
             "order": [[0, "asc"]],
             "columns": [
                 {"data": "title"},
-                {"data": "need"},
+                // {"data": "need"},
+                {"data": null, render: function (data, type, row) {
+                    console.log(data.need)
+                    if (data.need == true)
+
+                        return "да";
+                    else  return "нет";
+                    }},
                 {"data": "count"},
                 {
                     "data": null, render: function (data, type, row) {
@@ -46,11 +55,12 @@
         })
     });
 </script>
-<!--script>
-  $(document).ready(function() {
-    $('#parttable').DataTable();
-  } );
-</script-->
+<%--<script>--%>
+<%--  $(document).ready(function() {--%>
+<%--    $('#parttable').DataTable();--%>
+<%--  } );--%>
+<%--</script>--%>
+<H1>Список комлектующих</H1>
 <table id="parttable" class="table table-striped">
     <thead>
     <tr>
@@ -75,7 +85,7 @@
     <tfoot>
     <tr>
         <th>Можно собрать</th>
-        <th>0</th>
+        <th>${count}</th>
         <th>компьютеров</th>
     </tr>
     </tfoot>

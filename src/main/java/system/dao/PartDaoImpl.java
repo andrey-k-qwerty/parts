@@ -1,5 +1,8 @@
 package system.dao;
 
+import org.hibernate.SessionFactory;
+import org.hibernate.type.IntegerType;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import system.model.Part;
 
@@ -8,9 +11,51 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
+
 @Repository
 public class PartDaoImpl implements PartDao {
+    private SessionFactory sessionFactory;
 
+    @Autowired
+    public void setSessionFactory(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
+    }
+
+    @Override
+    public List<Part> allParts() {
+        return sessionFactory.getCurrentSession().createQuery("from Part").list();
+    }
+
+    @Override
+    public void add(Part part) {
+        sessionFactory.getCurrentSession().persist(part);
+
+    }
+
+    @Override
+    public void delete(Part part) {
+        sessionFactory.getCurrentSession().delete(part);
+
+    }
+
+    @Override
+    public void update(Part part) {
+        sessionFactory.getCurrentSession().update(part);
+
+    }
+
+    @Override
+    public Part getPartById(int id) {
+        return sessionFactory.getCurrentSession().get(Part.class, id);
+    }
+
+    @Override
+    public int getCountNeed() {
+        return (int) sessionFactory.getCurrentSession().createSQLQuery("select min(p.count) as c from part p " +
+                "where p.need = 1").addScalar("c", IntegerType.INSTANCE).uniqueResult();
+    }
+
+/*
     private static final AtomicInteger AUTO_ID = new AtomicInteger(1);
     private static List<Part> parts = new ArrayList<>();
 
@@ -74,5 +119,5 @@ public class PartDaoImpl implements PartDao {
     @Override
     public Part getPartById(int id) {
         return parts.stream().filter(p -> p.getId() == id).findFirst().orElse(null);
-    }
+    }*/
 }

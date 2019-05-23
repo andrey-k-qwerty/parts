@@ -5,7 +5,7 @@ import system.model.Part;
 import java.util.List;
 
 public interface PartDao {
-    List<Part> allParts();
+    List allParts();
 
     void add(Part part);
 
@@ -14,5 +14,7 @@ public interface PartDao {
     void update(Part part);
 
     Part getPartById(int id);
+
+    int getCountNeed();
 
 }
